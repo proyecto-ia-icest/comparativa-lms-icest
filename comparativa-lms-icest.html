@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#003B7A">
+<title>Comparativa de Plataformas LMS · ICEST</title>
+<style>
+  :root{
+    --navy:#003B7A; --navy-d:#002A57; --navy-l:#1565C0;
+    --gold:#F2A81D; --gold-d:#C9870B;
+    --bg:#F4F7FB; --card:#FFFFFF; --ink:#16263A; --muted:#5B6B7B; --line:#E3E9F2;
+    --ok:#1E8E3E; --warn:#E8A317; --no:#C2384B;
+    --p-open:#2D6CDF; --p-bright:#6D28D9; --p-google:#188038; --p-ms:#2B579A; --p-cypher:#E0A100;
+    --shadow:0 6px 22px rgba(13,38,76,.08); --shadow-s:0 2px 8px rgba(13,38,76,.06);
+    --r:16px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    background:var(--bg); color:var(--ink); line-height:1.55; -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4{line-height:1.2; margin:0 0 .4em}
+  p{margin:0 0 1em}
+  a{color:var(--navy-l)}
+  img{max-width:100%}
+  .wrap{width:100%; max-width:1100px; margin:0 auto; padding:0 16px}
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+  /* Header */
+  header.top{position:sticky; top:0; z-index:50; background:rgba(255,255,255,.92);
+    backdrop-filter:saturate(160%) blur(10px); border-bottom:1px solid var(--line)}
+  .topbar{display:flex; align-items:center; gap:12px; height:60px}
+  .brand{display:flex; align-items:center; gap:10px; font-weight:800; color:var(--navy); text-decoration:none; letter-spacing:.2px}
+  .brand img{height:30px; width:auto; display:block}
+  .brand .bt{font-size:.78rem; font-weight:600; color:var(--muted); display:block; letter-spacing:0}
+  .menu-btn{margin-left:auto; background:var(--navy); color:#fff; border:0; width:42px; height:38px; border-radius:10px; font-size:1.2rem; cursor:pointer}
+  nav.links{display:none}
+  nav.links a{color:var(--ink); text-decoration:none; font-weight:600; font-size:.92rem; padding:8px 10px; border-radius:8px}
+  nav.links a:hover{background:var(--bg); color:var(--navy)}
+  .drawer{display:none; flex-direction:column; padding:8px 16px 16px; border-top:1px solid var(--line); background:#fff}
+  .drawer.open{display:flex}
+  .drawer a{padding:12px 8px; text-decoration:none; color:var(--ink); font-weight:600; border-bottom:1px solid var(--line)}
+  .drawer a:last-child{border-bottom:0}
+
+  /* Hero */
+  .hero{background:linear-gradient(150deg,var(--navy) 0%, var(--navy-d) 60%, #061a33 100%); color:#fff; padding:42px 0 48px; position:relative; overflow:hidden}
+  .hero:after{content:""; position:absolute; right:-80px; top:-80px; width:260px; height:260px; background:radial-gradient(circle, rgba(242,168,29,.35), transparent 70%); border-radius:50%}
+  .hero .tag{display:inline-block; background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.25); color:#fff; padding:5px 12px; border-radius:999px; font-size:.78rem; font-weight:600; margin-bottom:14px}
+  .hero h1{font-size:1.8rem; max-width:18ch}
+  .hero p.lead{color:#D6E2F2; font-size:1.02rem; max-width:46ch; margin-bottom:22px}
+  .cta{display:flex; flex-wrap:wrap; gap:10px}
+  .btn{display:inline-flex; align-items:center; gap:8px; border:0; cursor:pointer; font-weight:700; font-size:.95rem; padding:13px 18px; border-radius:12px; text-decoration:none}
+  .btn.primary{background:var(--gold); color:#3a2600}
+  .btn.ghost{background:rgba(255,255,255,.12); color:#fff; border:1px solid rgba(255,255,255,.35)}
+  .btn.primary:hover{background:#ffba30}
+  .hero .stats{display:flex; gap:18px; flex-wrap:wrap; margin-top:24px}
+  .hero .stat b{display:block; font-size:1.5rem; color:var(--gold)}
+  .hero .stat span{font-size:.8rem; color:#C2D2E8}
+
+  /* Sections */
+  section{padding:40px 0}
+  section:nth-child(even){background:#fff}
+  .eyebrow{color:var(--navy-l); font-weight:800; letter-spacing:.12em; text-transform:uppercase; font-size:.72rem; margin-bottom:6px}
+  .stitle{font-size:1.42rem; margin-bottom:6px}
+  .ssub{color:var(--muted); max-width:60ch; margin-bottom:22px}
+
+  /* Cards grid */
+  .grid{display:grid; gap:14px}
+  .platform-cards{grid-template-columns:1fr}
+  .pcard{background:var(--card); border:1px solid var(--line); border-radius:var(--r); padding:18px; box-shadow:var(--shadow-s); border-top:5px solid var(--c)}
+  .pcard h3{display:flex; align-items:center; gap:8px; font-size:1.1rem}
+  .dot{width:12px;height:12px;border-radius:50%;background:var(--c); flex:0 0 auto}
+  .pcard .filo{color:var(--c); font-weight:700; font-size:.86rem; margin:-2px 0 8px}
+  .pcard ul{margin:8px 0 10px; padding-left:18px}
+  .pcard ul li{margin-bottom:3px; font-size:.92rem}
+  .pcard .ideal{font-size:.84rem; color:var(--muted); border-top:1px dashed var(--line); padding-top:8px}
+  .pcard .ideal b{color:var(--ink)}
+
+  /* Controls */
+  .controls{display:flex; flex-direction:column; gap:12px; margin-bottom:16px}
+  .chips{display:flex; gap:8px; flex-wrap:wrap}
+  .chip{border:1px solid var(--line); background:#fff; color:var(--ink); padding:7px 12px; border-radius:999px; font-size:.82rem; font-weight:600; cursor:pointer; user-select:none}
+  .chip.active{background:var(--navy); color:#fff; border-color:var(--navy)}
+  .chip.pf[data-on="1"]{box-shadow:inset 0 0 0 2px var(--c); border-color:var(--c); color:var(--c)}
+  .chip.pf[data-on="0"]{opacity:.5}
+  .ctl-label{font-size:.75rem; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); font-weight:700; margin-bottom:2px}
+
+  /* Table */
+  .tablewrap{overflow-x:auto; border:1px solid var(--line); border-radius:14px; box-shadow:var(--shadow-s); -webkit-overflow-scrolling:touch}
+  table.cmp{border-collapse:separate; border-spacing:0; width:100%; min-width:520px; background:#fff}
+  table.cmp th, table.cmp td{padding:11px 10px; text-align:center; border-bottom:1px solid var(--line); font-size:.9rem}
+  table.cmp thead th{position:sticky; top:0; background:var(--navy); color:#fff; font-size:.8rem; z-index:3}
+  table.cmp thead th .pn{display:block; font-weight:800; font-size:.82rem}
+  table.cmp tbody th{position:sticky; left:0; background:#fff; text-align:left; font-weight:600; z-index:2; min-width:180px; box-shadow:1px 0 0 var(--line)}
+  table.cmp tbody tr:nth-child(even) th{background:#FAFBFE}
+  table.cmp tbody tr:nth-child(even) td{background:#FAFBFE}
+  .cat-head td{background:var(--bg)!important; text-align:left; font-weight:800; color:var(--navy); font-size:.74rem; text-transform:uppercase; letter-spacing:.08em; padding:7px 10px}
+  .ic{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;font-weight:800;font-size:.8rem;color:#fff}
+  .ic.ok{background:var(--ok)} .ic.no{background:var(--no)} .ic.warn{background:var(--warn)}
+  .stars{letter-spacing:1px; font-size:.92rem; color:var(--gold-d)}
+  .stars .e{color:#D8DEE8}
+  td.best{position:relative}
+  td.best:after{content:"★ mejor"; position:absolute; bottom:2px; left:0; right:0; font-size:.52rem; color:var(--gold-d); letter-spacing:.04em; font-weight:700; text-transform:uppercase}
+  td .nt{display:block; font-size:.66rem; color:var(--muted); margin-top:2px}
+  .legend{display:flex; gap:14px; flex-wrap:wrap; font-size:.8rem; color:var(--muted); margin-top:12px}
+  .legend span{display:inline-flex; align-items:center; gap:6px}
+
+  /* Cost */
+  .cost-table{overflow-x:auto; border:1px solid var(--line); border-radius:14px; box-shadow:var(--shadow-s)}
+  table.cost{border-collapse:separate;border-spacing:0;width:100%;min-width:560px;background:#fff}
+  table.cost th, table.cost td{padding:10px; border-bottom:1px solid var(--line); font-size:.86rem; text-align:center}
+  table.cost thead th{background:var(--navy); color:#fff; position:sticky; top:0}
+  table.cost tbody th{text-align:left; font-weight:600; background:#fff; position:sticky; left:0; min-width:150px}
+  .lvl{display:inline-block; padding:4px 9px; border-radius:999px; font-weight:700; font-size:.78rem; white-space:nowrap}
+  .lvl.low{background:#E4F4E9; color:#147A33}
+  .lvl.mid{background:#FCF1DA; color:#9A6B05}
+  .lvl.high{background:#FBE4E7; color:#A92A3B}
+  .cv-grid{display:grid; gap:12px; margin-top:18px}
+  .cv-row{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px;box-shadow:var(--shadow-s); border-left:5px solid var(--c)}
+  .cv-row .pn{font-weight:800; display:flex; align-items:center; gap:8px; margin-bottom:6px}
+  .cv-line{display:flex; align-items:center; gap:8px; font-size:.8rem; color:var(--muted); margin-bottom:3px}
+  .cv-line b{width:48px; color:var(--ink); flex:0 0 auto}
+  .meter{flex:1; height:8px; background:#EEF1F6; border-radius:99px; overflow:hidden}
+  .meter i{display:block; height:100%; border-radius:99px}
+  .meter.cost i{background:linear-gradient(90deg,#E8A317,#C2384B)}
+  .meter.val i{background:linear-gradient(90deg,#3FA66B,#188038)}
+  details.price{background:#fff;border:1px solid var(--line);border-radius:12px;margin-top:10px;box-shadow:var(--shadow-s); overflow:hidden}
+  details.price>summary{cursor:pointer; padding:13px 16px; font-weight:700; display:flex; align-items:center; gap:10px; list-style:none; border-left:5px solid var(--c)}
+  details.price>summary::-webkit-details-marker{display:none}
+  details.price>summary:after{content:"+"; margin-left:auto; font-size:1.2rem; color:var(--muted)}
+  details.price[open]>summary:after{content:"–"}
+  details.price .body{padding:0 16px 14px; font-size:.9rem; color:#2c3e52}
+  .order-flow{display:flex; align-items:center; gap:6px; flex-wrap:wrap; background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px; margin-top:16px; box-shadow:var(--shadow-s)}
+  .order-flow .o{padding:6px 11px;border-radius:999px;font-weight:700;font-size:.82rem;color:#fff}
+  .order-flow .ar{color:var(--muted); font-weight:800}
+
+  /* Cases */
+  .case-grid{display:grid; gap:14px}
+  .case{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:16px;box-shadow:var(--shadow-s); border-top:5px solid var(--c)}
+  .case h3{display:flex;align-items:center;gap:8px;font-size:1.05rem}
+  .case .grp{margin-top:8px}
+  .case .glabel{font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;font-weight:800;color:var(--muted)}
+  .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:5px}
+  .tg{font-size:.78rem;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:4px 8px}
+  .tg.mx{border-left:3px solid #006847}
+  .tg.la{border-left:3px solid var(--navy-l)}
+  .case .nota{font-size:.8rem;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px}
+
+  /* Rankings */
+  .rank-grid{display:grid;gap:10px;grid-template-columns:1fr}
+  .rank{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px;box-shadow:var(--shadow-s)}
+  .rank .cat{font-weight:600;font-size:.92rem}
+  .rank .win{margin-left:auto;display:inline-flex;align-items:center;gap:7px;font-weight:800;font-size:.85rem;color:var(--c)}
+  .rank .win .dot{width:10px;height:10px}
+  .medal{font-size:1.1rem}
+
+  /* ICEST scenarios */
+  .scn-grid{display:grid;gap:12px}
+  .scn{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:var(--shadow-s);position:relative;border-left:5px solid var(--c)}
+  .scn .badge{font-size:1.4rem}
+  .scn h4{font-size:1rem;margin:6px 0 4px}
+  .scn .rec{display:inline-flex;align-items:center;gap:8px;font-weight:800;color:var(--c);margin-top:6px;font-size:.9rem}
+  .scn p{font-size:.86rem;color:var(--muted);margin:0}
+
+  /* Recommender */
+  .quiz{background:linear-gradient(160deg,#fff, #F2F6FC);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);padding:20px; max-width:680px; margin:0 auto}
+  .qprog{height:8px;background:#E7ECF4;border-radius:99px;overflow:hidden;margin-bottom:6px}
+  .qprog i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--navy-l));width:0;transition:width .35s ease}
+  .qmeta{display:flex;justify-content:space-between;font-size:.76rem;color:var(--muted);font-weight:600;margin-bottom:14px}
+  .qquestion{font-size:1.18rem;font-weight:800;margin-bottom:16px;min-height:2.2em}
+  .qopts{display:grid;gap:10px}
+  .qopt{display:flex;align-items:center;gap:12px;text-align:left;background:#fff;border:1.5px solid var(--line);border-radius:13px;padding:14px 15px;cursor:pointer;font-size:.96rem;font-weight:600;transition:.15s;color:var(--ink)}
+  .qopt:hover{border-color:var(--navy-l);transform:translateY(-1px);box-shadow:var(--shadow-s)}
+  .qopt .k{width:26px;height:26px;border-radius:8px;background:var(--bg);display:inline-flex;align-items:center;justify-content:center;font-weight:800;color:var(--navy);flex:0 0 auto}
+  .qnav{display:flex;justify-content:space-between;margin-top:16px;gap:10px}
+  .qback{background:transparent;border:1px solid var(--line);color:var(--muted);border-radius:10px;padding:10px 14px;font-weight:700;cursor:pointer}
+  .qback[disabled]{opacity:.4;cursor:default}
+
+  /* Results */
+  .results{display:none}
+  .results.show{display:block; animation:fade .4s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .res-head{text-align:center;margin-bottom:18px}
+  .res-head h3{font-size:1.3rem}
+  .podium{display:grid;gap:12px}
+  .res{display:flex;gap:14px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:14px;padding:15px;box-shadow:var(--shadow-s);border-left:6px solid var(--c)}
+  .res .rk{font-size:1.7rem;flex:0 0 auto;width:34px;text-align:center}
+  .res .info{flex:1;min-width:0}
+  .res .info h4{display:flex;align-items:center;gap:8px;font-size:1.06rem;margin-bottom:2px}
+  .res .why{font-size:.86rem;color:var(--muted);margin:4px 0 8px}
+  .res .why b{color:var(--c)}
+  .res .bar{height:9px;background:#EDF1F7;border-radius:99px;overflow:hidden}
+  .res .bar i{display:block;height:100%;background:var(--c);border-radius:99px;transition:width .8s ease}
+  .res .pct{font-size:.78rem;font-weight:800;color:var(--c);margin-top:4px}
+  .res.top1{box-shadow:0 10px 28px rgba(13,38,76,.14)}
+  .res-foot{text-align:center;margin-top:18px}
+
+  /* Footer */
+  footer{background:var(--navy-d);color:#cdd9ea;padding:34px 0 30px;font-size:.88rem}
+  footer h4{color:#fff;font-size:.95rem;margin-bottom:10px}
+  footer a{color:#9fc2ee;text-decoration:none}
+  footer a:hover{text-decoration:underline}
+  .src-list{columns:1; font-size:.8rem; line-height:1.7}
+  .disc{font-size:.76rem;color:#8aa0bd;border-top:1px solid rgba(255,255,255,.12);margin-top:18px;padding-top:14px}
+
+  @media(min-width:560px){
+    .platform-cards{grid-template-columns:1fr 1fr}
+    .case-grid{grid-template-columns:1fr 1fr}
+    .cv-grid{grid-template-columns:1fr 1fr}
+    .scn-grid{grid-template-columns:1fr 1fr}
+    .hero h1{font-size:2.1rem}
+  }
+  @media(min-width:860px){
+    nav.links{display:flex; margin-left:auto; gap:2px}
+    .menu-btn{display:none}
+    .platform-cards{grid-template-columns:repeat(3,1fr)}
+    .scn-grid{grid-template-columns:repeat(3,1fr)}
+    .rank-grid{grid-template-columns:1fr 1fr}
+    .src-list{columns:2}
+    .hero h1{font-size:2.4rem}
+    section{padding:54px 0}
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap topbar">
+    <a class="brand" href="#inicio">
+      <img src="https://www.icest.edu.mx/media/fwhfjifb/icest-zul.png" alt="ICEST" onerror="this.style.display='none'">
+      <span>LMS<span class="bt">Comparativa para ICEST</span></span>
+    </a>
+    <nav class="links">
+      <a href="#resumen">Plataformas</a>
+      <a href="#funciones">Funcionalidades</a>
+      <a href="#costos">Costos</a>
+      <a href="#casos">Casos reales</a>
+      <a href="#rankings">Rankings</a>
+      <a href="#recomendador">Recomendador</a>
+    </nav>
+    <button class="menu-btn" id="menuBtn" aria-label="Abrir menú">☰</button>
+  </div>
+  <div class="drawer" id="drawer">
+    <a href="#resumen">Plataformas</a>
+    <a href="#funciones">Funcionalidades</a>
+    <a href="#costos">Costos</a>
+    <a href="#casos">Casos reales en México y LATAM</a>
+    <a href="#rankings">Rankings por categoría</a>
+    <a href="#icest">Si fuera para ICEST</a>
+    <a href="#recomendador">Recomendador (top 3)</a>
+  </div>
+</header>
+
+<main id="inicio">
+
+<section class="hero">
+  <div class="wrap">
+    <span class="tag">Decisión de plataforma educativa · Corporativo ICEST</span>
+    <h1>¿Qué plataforma para operar el aprendizaje le conviene a ICEST?</h1>
+    <p class="lead">Compara funcionalidades, costos y casos reales en México y Latinoamérica de las 5 plataformas líderes — y responde 8 preguntas para obtener tu <b>top&nbsp;3</b> a la medida.</p>
+    <div class="cta">
+      <a class="btn primary" href="#recomendador">⚡ Encontrar mi plataforma</a>
+      <a class="btn ghost" href="#funciones">Ver comparativa</a>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>5</b><span>plataformas evaluadas</span></div>
+      <div class="stat"><b>20</b><span>funcionalidades</span></div>
+      <div class="stat"><b>8</b><span>preguntas → top 3</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="resumen">
+  <div class="wrap">
+    <div class="eyebrow">Resumen ejecutivo</div>
+    <h2 class="stitle">Las cinco plataformas, de un vistazo</h2>
+    <p class="ssub">Cada una responde a una filosofía distinta. No hay una “mejor” universal: hay una mejor <i>para tu objetivo</i>.</p>
+    <div class="grid platform-cards" id="cardsHost"></div>
+  </div>
+</section>
+
+<section id="funciones">
+  <div class="wrap">
+    <div class="eyebrow">Comparativa de funcionalidades</div>
+    <h2 class="stitle">20 funcionalidades, lado a lado</h2>
+    <p class="ssub">Filtra por categoría y elige qué plataformas comparar. Desliza la tabla horizontalmente en el celular. La celda más alta de cada fila se marca como “mejor”.</p>
+    <div class="controls">
+      <div>
+        <div class="ctl-label">Categoría</div>
+        <div class="chips" id="catChips"></div>
+      </div>
+      <div>
+        <div class="ctl-label">Plataformas a comparar</div>
+        <div class="chips" id="pfChips"></div>
+      </div>
+    </div>
+    <div class="tablewrap"><table class="cmp" id="cmpTable"></table></div>
+    <div class="legend">
+      <span><span class="ic ok">✓</span> Sí / soportado</span>
+      <span><span class="ic warn">!</span> Parcial o limitado</span>
+      <span><span class="ic no">✕</span> No disponible</span>
+      <span><span class="stars">★★★★★</span> Nivel de madurez (1–5)</span>
+    </div>
+  </div>
+</section>
+
+<section id="costos">
+  <div class="wrap">
+    <div class="eyebrow">Comparativa de costos (TCO)</div>
+    <h2 class="stitle">Cuánto cuesta — y cuánto vale</h2>
+    <p class="ssub">Open LMS, Brightspace y CYPHER no publican precios (trabajan por cotización). Lo siguiente compara el modelo comercial, la complejidad y el costo total de propiedad, con rangos estimados de fuentes públicas (2023–2026).</p>
+    <div class="cost-table"><table class="cost" id="costTable"></table></div>
+
+    <h3 style="margin-top:26px; font-size:1.1rem">Costo vs. valor institucional</h3>
+    <div class="cv-grid" id="cvHost"></div>
+
+    <h3 style="margin-top:26px; font-size:1.1rem">Orden aproximado de inversión total (menor → mayor)</h3>
+    <div class="order-flow" id="orderHost"></div>
+
+    <h3 style="margin-top:26px; font-size:1.1rem">Detalle de precios y licenciamiento</h3>
+    <div id="priceHost"></div>
+  </div>
+</section>
+
+<section id="casos">
+  <div class="wrap">
+    <div class="eyebrow">Adopción real</div>
+    <h2 class="stitle">Quién las usa en México y Latinoamérica</h2>
+    <p class="ssub">Instituciones nombradas con respaldo público. Se marca <b>México</b> 🇲🇽 y <b>LATAM</b> 🌎, e incluye salvedades donde la evidencia es más delgada.</p>
+    <div class="case-grid" id="casesHost"></div>
+  </div>
+</section>
+
+<section id="rankings">
+  <div class="wrap">
+    <div class="eyebrow">Ganador por categoría</div>
+    <h2 class="stitle">Rankings por categoría</h2>
+    <p class="ssub">Quién lidera cada dimensión clave de la decisión.</p>
+    <div class="rank-grid" id="rankHost"></div>
+  </div>
+</section>
+
+<section id="icest">
+  <div class="wrap">
+    <div class="eyebrow">Aplicado a ICEST</div>
+    <h2 class="stitle">Si fuera para ICEST</h2>
+    <p class="ssub">La mejor opción depende del objetivo estratégico. Cinco escenarios, cinco ganadores.</p>
+    <div class="scn-grid" id="scnHost"></div>
+  </div>
+</section>
+
+<section id="recomendador">
+  <div class="wrap">
+    <div class="eyebrow">Recomendador interactivo</div>
+    <h2 class="stitle">Responde 8 preguntas → recibe tu top 3</h2>
+    <p class="ssub">Diseñado para educación superior multi-campus. Cada respuesta pondera 13 criterios y calcula la compatibilidad de cada plataforma con tu contexto.</p>
+
+    <div class="quiz">
+      <div id="quizStage">
+        <div class="qprog"><i id="qbar"></i></div>
+        <div class="qmeta"><span id="qcount">Pregunta 1 de 8</span><span id="qcat">Recomendador ICEST</span></div>
+        <div class="qquestion" id="qtext"></div>
+        <div class="qopts" id="qopts"></div>
+        <div class="qnav"><button class="qback" id="qback" disabled>← Atrás</button><span></span></div>
+      </div>
+
+      <div class="results" id="results">
+        <div class="res-head">
+          <h3>Tu top 3 para este perfil</h3>
+          <p style="color:var(--muted);font-size:.9rem;margin:0">Compatibilidad calculada con tus respuestas</p>
+        </div>
+        <div class="podium" id="podium"></div>
+        <div class="res-foot"><button class="btn ghost" id="restart" style="background:var(--navy);color:#fff">↺ Volver a empezar</button></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <h4>Fuentes principales</h4>
+    <div class="src-list">
+      <p>Precios y licenciamiento:
+      <a href="https://edu.google.com/intl/ALL_us/workspace-for-education/editions/compare-editions/" target="_blank" rel="noopener">Google Workspace for Education — Comparar ediciones</a> ·
+      <a href="https://www.trafera.com/blog/2025-google-workspace-for-education-pricing-and-licensing-updates/" target="_blank" rel="noopener">Cambios de licenciamiento Google 2025</a> ·
+      <a href="https://www.aguidetocloud.com/licensing/microsoft-365-education/" target="_blank" rel="noopener">Microsoft 365 Education A1/A3/A5</a> ·
+      <a href="https://www.microsoft.com/en-us/education/blog/2025/10/designing-microsoft-365-copilot-to-empower-educators-students-and-staff/" target="_blank" rel="noopener">Microsoft 365 Copilot para educación</a> ·
+      <a href="https://www.omniapartners.com/suppliers-files/A-D/D2L/Contract_Documents/R201401/R201401_D2L_PRC_2023_07_11.pdf" target="_blank" rel="noopener">Tarifa pública D2L por FTE (OMNIA, 2023)</a> ·
+      <a href="https://www.itqlick.com/d2l-brightspace/pricing" target="_blank" rel="noopener">Análisis de precios Brightspace (ITQlick)</a> ·
+      <a href="https://www.educate-me.co/blog/cypher-learning-pricing" target="_blank" rel="noopener">Análisis de precios CYPHER Learning</a> ·
+      <a href="https://www.g2.com/products/learning-technologies-group-plc-open-lms/reviews" target="_blank" rel="noopener">Open LMS (G2)</a></p>
+      <p>Casos en México y LATAM:
+      <a href="https://www.openlms.net/es/open-lms-edu/universidades/" target="_blank" rel="noopener">Universidades Open LMS</a> ·
+      <a href="https://www.d2l.com/es/por-que-elegir-d2l/clientes/" target="_blank" rel="noopener">Clientes D2L/Brightspace</a> ·
+      <a href="https://emprefinanzas.com.mx/2021/01/26/d2l-crece-en-el-mercado-mexicano-gracias-a-la-adopcion-de-su-plataforma-brightspace/" target="_blank" rel="noopener">D2L en México</a> ·
+      <a href="https://news.microsoft.com/source/latam/company-news-es/la-uvm-se-transforma-digitalmente-para-brindar-un-mejor-servicio-de-atencion-a-sus-estudiantes/" target="_blank" rel="noopener">Microsoft — UVM</a> ·
+      <a href="https://edu.google.com/intl/ALL_mx/resources/customer-stories/innovar-estado-de-mexico/" target="_blank" rel="noopener">Google for Education — México</a> ·
+      <a href="https://cypherlearning.com/customers/neo/case-studies/miraflores-school" target="_blank" rel="noopener">CYPHER — Miraflores School</a></p>
+    </div>
+    <p class="disc">Importante: este sitio es una herramienta de apoyo a la decisión, no una cotización. Las cifras de costos son rangos estimados con base en fuentes públicas y deben confirmarse con cada proveedor o un distribuidor en México. La comparativa de funcionalidades se basa en el análisis proporcionado por el área de IA de ICEST, complementado con investigación de mercado. · Elaborado para el Corporativo ICEST · Actualizado: 19/06/2026.</p>
+  </div>
+</footer>
+
+<script>
+/* ===================== DATOS ===================== */
+const P = {
+  openlms:  {name:"Open LMS", short:"Open LMS", c:"var(--p-open)", filo:"Flexibilidad y personalización", exec:"Flexibilidad y control",
+    ideal:"Instituciones con equipo técnico que buscan control y personalización",
+    str:["Basado en Moodle (open source)","Gran ecosistema de plugins","Altamente configurable"]},
+  brightspace:{name:"Brightspace (D2L)", short:"Brightspace", c:"var(--p-bright)", filo:"Éxito estudiantil basado en datos", exec:"Analítica y éxito estudiantil",
+    ideal:"Universidades acreditadas y proyectos de retención estudiantil",
+    str:["Analítica avanzada y alertas tempranas","Aprendizaje por competencias","Accesibilidad líder + IA Lumi"]},
+  google:   {name:"Google Workspace for Education", short:"Google", c:"var(--p-google)", filo:"Enseñanza y colaboración simple", exec:"Enseñanza y colaboración",
+    ideal:"Adopción masiva y rápida; docentes con baja madurez tecnológica",
+    str:["Classroom + Gemini + NotebookLM","Adopción muy sencilla","Edición gratuita disponible"]},
+  microsoft:{name:"Microsoft Teams for Education", short:"Microsoft", c:"var(--p-ms)", filo:"Colaboración institucional", exec:"Operación institucional",
+    ideal:"Instituciones con infraestructura Microsoft y colaboración administrativa",
+    str:["Teams + OneNote + SharePoint","Copilot integrado","Edición A1 gratuita"]},
+  cypher:   {name:"CYPHER Learning", short:"CYPHER", c:"var(--p-cypher)", filo:"IA + Competencias + Automatización", exec:"IA, competencias y empleabilidad",
+    ideal:"Universidades orientadas a empleabilidad y educación por competencias",
+    str:["AI Course Builder + Skill Mapping","Learning Paths + certificaciones","Gamificación y automatización"]}
+};
+const ORDER = ["openlms","brightspace","google","microsoft","cypher"];
+
+const FEATURES = [
+ {n:"Gestión de cursos", c:"Núcleo LMS", v:{openlms:"yes",brightspace:"yes",google:"partial",microsoft:"partial",cypher:"yes"}, note:{google:"Básica (Classroom)",microsoft:"Básica"}},
+ {n:"LMS completo", c:"Núcleo LMS", v:{openlms:"yes",brightspace:"yes",google:"no",microsoft:"no",cypher:"yes"}},
+ {n:"Evaluaciones y exámenes", c:"Núcleo LMS", v:{openlms:"yes",brightspace:5,google:3,microsoft:3,cypher:4}},
+ {n:"Rúbricas", c:"Núcleo LMS", v:{openlms:"yes",brightspace:5,google:4,microsoft:4,cypher:4}},
+ {n:"Certificaciones", c:"Núcleo LMS", v:{openlms:"yes",brightspace:"yes",google:"no",microsoft:"no",cypher:5}},
+ {n:"Aplicación móvil", c:"Núcleo LMS", v:{openlms:"yes",brightspace:"yes",google:"yes",microsoft:"yes",cypher:"yes"}},
+ {n:"Rutas de aprendizaje", c:"Aprendizaje", v:{openlms:"yes",brightspace:"yes",google:"partial",microsoft:"partial",cypher:5}, note:{google:"Limitadas",microsoft:"Limitadas"}},
+ {n:"Gestión por competencias", c:"Aprendizaje", v:{openlms:"partial",brightspace:5,google:"no",microsoft:"no",cypher:5}, note:{openlms:"Vía Moodle/plugins"}},
+ {n:"Aprendizaje adaptativo", c:"Aprendizaje", v:{openlms:"partial",brightspace:5,google:"no",microsoft:"no",cypher:4}},
+ {n:"Gamificación", c:"Aprendizaje", v:{openlms:"yes",brightspace:"partial",google:"no",microsoft:"no",cypher:5}, note:{brightspace:"Básica"}},
+ {n:"IA integrada", c:"Inteligencia Artificial", v:{openlms:"partial",brightspace:4,google:4,microsoft:4,cypher:5}, note:{openlms:"Según plugins",brightspace:"Lumi",google:"Gemini",microsoft:"Copilot"}},
+ {n:"Creación de contenido con IA", c:"Inteligencia Artificial", v:{openlms:"partial",brightspace:4,google:3,microsoft:3,cypher:5}},
+ {n:"Analítica de aprendizaje", c:"Datos y analítica", v:{openlms:"yes",brightspace:5,google:2,microsoft:2,cypher:4}},
+ {n:"Alertas tempranas (riesgo de abandono)", c:"Datos y analítica", v:{openlms:"partial",brightspace:5,google:"no",microsoft:"no",cypher:3}, note:{openlms:"Vía integraciones"}},
+ {n:"API / BI", c:"Datos y analítica", v:{openlms:"yes",brightspace:5,google:4,microsoft:4,cypher:4}},
+ {n:"Accesibilidad", c:"Institucional", v:{openlms:3,brightspace:5,google:4,microsoft:4,cypher:3}},
+ {n:"Integraciones externas", c:"Institucional", v:{openlms:4,brightspace:5,google:5,microsoft:5,cypher:4}},
+ {n:"Multi-campus", c:"Institucional", v:{openlms:"yes",brightspace:5,google:3,microsoft:3,cypher:5}},
+ {n:"Escalabilidad universitaria", c:"Institucional", v:{openlms:3,brightspace:5,google:3,microsoft:3,cypher:4}},
+ {n:"Facilidad de adopción docente", c:"Institucional", v:{openlms:3,brightspace:3,google:5,microsoft:4,cypher:4}}
+];
+const CATS = ["Todas","Núcleo LMS","Aprendizaje","Inteligencia Artificial","Datos y analítica","Institucional"];
+
+const COST_ROWS = [
+ {label:"Inversión inicial", vals:{google:"Muy baja",microsoft:"Baja",openlms:"Media",cypher:"Media-alta",brightspace:"Alta"}},
+ {label:"Costo operativo", vals:{google:"Baja",microsoft:"Baja-media",openlms:"Media",cypher:"Media-alta",brightspace:"Alta"}},
+ {label:"Implementación", vals:{google:"Muy simple",microsoft:"Simple",openlms:"Media",cypher:"Media",brightspace:"Compleja"}},
+ {label:"Soporte", vals:{google:"Bajo",microsoft:"Bajo",openlms:"Medio",cypher:"Medio",brightspace:"Alto"}},
+ {label:"Costo total estimado", vals:{google:"Muy bajo",microsoft:"Bajo",openlms:"Medio",cypher:"Medio-alto",brightspace:"Alto"}}
+];
+function costLevel(t){
+  t=t.toLowerCase();
+  if(t.indexOf("alt")>-1||t.indexOf("complej")>-1) return "high";
+  if(t.indexOf("media")>-1||t.indexOf("medio")>-1) return "mid";
+  return "low";
+}
+const COSTVALUE = {google:{costo:1,valor:4},microsoft:{costo:2,valor:4},openlms:{costo:3,valor:3},cypher:{costo:4,valor:5},brightspace:{costo:5,valor:5}};
+const INVEST_ORDER = ["google","microsoft","openlms","cypher","brightspace"];
+
+const PRICE = {
+ openlms:"Modelo por cotización (sin precio público). El software Moodle es gratuito; se paga el hosting administrado, soporte y actualizaciones, normalmente por número de usuarios activos. Referencia de piso: instalaciones pequeñas tipo MoodleCloud rondan US$130–1,800/año; para una universidad, contrato anual a medida (miles a decenas de miles de USD). Ventaja: sin licencia propietaria ni dependencia (lock-in).",
+ brightspace:"Por cotización, contrato anual por FTE (alumno equivalente de tiempo completo). Tarifa pública vía contrato cooperativo OMNIA (2023): ~US$16.50 por FTE/año en el tramo 1–2,500 FTE, bajando por volumen. Mínimo institucional ~US$10,000–15,000/año. Implementación aparte: US$11,500–33,000+. Escala de referencia: Purdue University ~US$817,000/año.",
+ google:"Education Fundamentals es GRATIS para instituciones que califican (Classroom, Docs, Meet, Drive, 100 TB). Ediciones de pago (precios 2025–26): Standard ~US$3/usuario/año; Plus ~US$6/usuario/año; complemento Teaching &amp; Learning ~US$60/usuario/año; Google AI Pro for Education ~US$20/usuario/mes. Cambio 2025: en Standard/Plus todos los usuarios activos (incluido el personal) requieren licencia pagada.",
+ microsoft:"Office/Teams A1 es GRATIS (incluye Teams, correo, Office web, OneDrive/SharePoint). De pago (precios faculty): A3 ~US$3.25/usuario/mes; A5 ~US$8/usuario/mes. IA: Copilot Chat incluido sin costo; Microsoft 365 Copilot completo es complemento ~US$18/usuario/mes (mínimo 300 licencias, desde dic. 2025).",
+ cypher:"Por cotización, suscripción anual por estudiantes activos y plan de funciones. Piso reportado ~US$10,000/año; despliegues medianos ~US$20,000–50,000/año; grandes ~US$80,000–100,000+/año. El primer año suele incluir un costo extra de implementación y configuración. Muchas capacidades vienen incluidas de fábrica (menos plugins)."
+};
+
+const CASES = {
+ openlms:{mx:["Universidad Madero (UMAD), Puebla","UniverMilenium","UNAM (Moodle)","UNADM (Moodle)"], la:["U. Católica Silva Henríquez · Chile","U. Santo Tomás · Colombia","U. de Vassouras · Brasil"], nota:"Moodle/Open LMS domina la base instalada en universidades públicas mexicanas. +1,000 clientes y +10 M de usuarios a nivel global."},
+ brightspace:{mx:["Red de Universidades Anáhuac (9 campus, +25,000)","Aliat Universidades (27 campus, ~60,000)","U. Metropolitana de Monterrey","Instituto Tecnológico de Mérida","CEDVA (+60 planteles)","Grupo Isima","Ibero CDMX"], la:["UDLA","F. U. Salesiana · Colombia","Instituto Justo Arosemena · Panamá"], nota:"La evidencia de adopción universitaria nombrada en México es la más sólida del grupo."},
+ google:{mx:["Universidad Insurgentes (UIN)","Aprende 2.0: Baja California y Jalisco (+162,000 estudiantes)"], la:["Amplia adopción regional en educación básica y media"], nota:"Fortísimo en K-12 y media superior en México; menos casos universitarios nombrados públicamente."},
+ microsoft:{mx:["Universidad del Valle de México — UVM (+100,000 estudiantes, 33 campus)","UNAM, Facultad de Ingeniería (Office 365 A1)","Tecnológico de Monterrey (alianza IA/Azure)"], la:["UNED · Costa Rica"], nota:"Caso mexicano muy fuerte en colaboración y operación institucional (UVM, en 10 días)."},
+ cypher:{mx:["Miraflores School, Edo. de México (K-12)"], la:["Le Cordon Bleu · Perú (superior, “Customer of the Year 2026”)"], nota:"Menor penetración universitaria comprobable en LATAM; su mayor base en educación superior está en Asia. Caso regional universitario más claro: Le Cordon Bleu (Perú)."}
+};
+
+const RANKINGS = [
+ ["LMS tradicional","brightspace"],["Aprendizaje por competencias","cypher"],["Analítica institucional","brightspace"],
+ ["IA educativa","cypher"],["Productividad docente","google"],["Colaboración institucional","microsoft"],
+ ["Personalización","openlms"],["Accesibilidad","brightspace"],["Facilidad de adopción","google"],
+ ["Menor costo","google"],["Innovación educativa","cypher"]
+];
+
+const SCENARIOS = [
+ {badge:"⚡", t:"Adopción rápida (corto plazo)", p:"google", d:"Implementación masiva y sencilla para docentes en semanas."},
+ {badge:"🤖", t:"Transformación educativa con IA", p:"cypher", d:"IA, competencias y empleabilidad como eje del modelo."},
+ {badge:"📊", t:"Analítica y retención estudiantil", p:"brightspace", d:"Datos, alertas tempranas y éxito del estudiante."},
+ {badge:"🏛️", t:"Colaboración administrativa", p:"microsoft", d:"Operación y comunicación sobre el ecosistema Microsoft."},
+ {badge:"🛠️", t:"Máxima personalización y control", p:"openlms", d:"Flexibilidad open source con equipo técnico propio."}
+];
+
+/* Recomendador: puntajes por dimensión (0–5) */
+const DIM = {
+ openlms:    {cost:3,analytics:3,competencies:3,ai:2,adoption:3,collaboration:2,customization:5,completeLMS:4,scalability:3,gamification:4,accessibility:3,ms_eco:1,google_eco:1},
+ brightspace:{cost:1,analytics:5,competencies:5,ai:4,adoption:3,collaboration:2,customization:3,completeLMS:5,scalability:5,gamification:2,accessibility:5,ms_eco:2,google_eco:2},
+ google:     {cost:5,analytics:2,competencies:1,ai:4,adoption:5,collaboration:5,customization:2,completeLMS:1,scalability:3,gamification:1,accessibility:4,ms_eco:1,google_eco:5},
+ microsoft:  {cost:4,analytics:2,competencies:1,ai:4,adoption:4,collaboration:5,customization:2,completeLMS:1,scalability:3,gamification:1,accessibility:4,ms_eco:5,google_eco:1},
+ cypher:     {cost:2,analytics:4,competencies:5,ai:5,adoption:4,collaboration:2,customization:3,completeLMS:5,scalability:4,gamification:5,accessibility:3,ms_eco:2,google_eco:2}
+};
+const DIM_LABEL = {cost:"su costo accesible",analytics:"su analítica y alertas tempranas",competencies:"su enfoque por competencias",ai:"su IA educativa",adoption:"su facilidad de adopción",collaboration:"su colaboración institucional",customization:"su personalización y control",completeLMS:"ser un LMS completo y robusto",scalability:"su escalabilidad multi-campus",gamification:"su gamificación",accessibility:"su accesibilidad",ms_eco:"su integración con Microsoft",google_eco:"su integración con Google"};
+
+const QUESTIONS = [
+ {q:"¿Cuál es la prioridad #1 de tu institución en este momento?", opts:[
+   {t:"Reducir costos / presupuesto ajustado", w:{cost:3}},
+   {t:"Retención y éxito estudiantil", w:{analytics:3,completeLMS:1}},
+   {t:"Educación por competencias y empleabilidad", w:{competencies:3,ai:1}},
+   {t:"Adopción rápida y fácil para docentes", w:{adoption:3,collaboration:1}} ]},
+ {q:"¿Qué tan importante es la Inteligencia Artificial educativa (crear contenido, tutorías, automatización)?", opts:[
+   {t:"Crítica: es el motor del proyecto", w:{ai:3}},
+   {t:"Importante", w:{ai:2}},
+   {t:"Deseable, pero no decisiva", w:{ai:1}},
+   {t:"No es una prioridad", w:{}} ]},
+ {q:"¿Con qué infraestructura tecnológica ya cuenta la institución?", opts:[
+   {t:"Ecosistema Microsoft (Office 365, Outlook, Teams)", w:{ms_eco:3,collaboration:1}},
+   {t:"Ecosistema Google (Gmail, Drive, Classroom)", w:{google_eco:3,adoption:1}},
+   {t:"Moodle y/o equipo técnico propio", w:{customization:3,completeLMS:1}},
+   {t:"Ninguno consolidado / partimos de cero", w:{adoption:2,cost:1}} ]},
+ {q:"¿Qué tan robusta necesitas la analítica y la detección temprana de riesgo de abandono?", opts:[
+   {t:"Esencial (acreditación, retención)", w:{analytics:3,scalability:1}},
+   {t:"Útil", w:{analytics:2}},
+   {t:"Básica está bien", w:{analytics:1}},
+   {t:"No la necesito", w:{}} ]},
+ {q:"¿Tu estrategia académica se basa en competencias, rutas personalizadas y certificaciones?", opts:[
+   {t:"Sí, es el centro del modelo", w:{competencies:3,completeLMS:1,gamification:1}},
+   {t:"Parcialmente", w:{competencies:2}},
+   {t:"Modelo tradicional por materias", w:{completeLMS:1}} ]},
+ {q:"¿Qué escala debe soportar la plataforma?", opts:[
+   {t:"Multi-campus, miles de alumnos", w:{scalability:3,completeLMS:1}},
+   {t:"Un campus grande", w:{scalability:2}},
+   {t:"Institución pequeña o mediana, un solo sitio", w:{cost:1,adoption:1}} ]},
+ {q:"¿Qué papel juega el presupuesto en la decisión?", opts:[
+   {t:"Determinante: la opción más económica posible", w:{cost:3}},
+   {t:"Importante: buscamos el mejor costo-beneficio", w:{cost:2}},
+   {t:"Flexible si el valor lo justifica", w:{completeLMS:1}} ]},
+ {q:"¿Cuánto necesitas personalizar y controlar la plataforma (marca, integraciones, código)?", opts:[
+   {t:"Mucho: control total / open source", w:{customization:3}},
+   {t:"Algo de personalización", w:{customization:1}},
+   {t:"Prefiero algo listo para usar (llave en mano)", w:{adoption:2,ai:1}} ]}
+];
+
+/* ===================== UTILIDADES ===================== */
+function el(tag, cls, html){ const e=document.createElement(tag); if(cls)e.className=cls; if(html!=null)e.innerHTML=html; return e; }
+function pcolor(k){ return getComputedStyle(document.documentElement).getPropertyValue(P[k].c.replace('var(','').replace(')','')) || P[k].c; }
+function setC(node,k){ node.style.setProperty('--c', P[k].c); }
+function numVal(v){ if(v==="yes")return 4; if(v==="partial")return 2; if(v==="no")return 0; return v; }
+function cellHTML(v,note){
+  let inner;
+  if(v==="yes") inner='<span class="ic ok" title="Sí">✓</span>';
+  else if(v==="no") inner='<span class="ic no" title="No disponible">✕</span>';
+  else if(v==="partial") inner='<span class="ic warn" title="Parcial">!</span>';
+  else { let s=""; for(let i=1;i<=5;i++) s+= i<=v? "★" : '<span class="e">★</span>'; inner='<span class="stars">'+s+'</span>'; }
+  if(note) inner += '<span class="nt">'+note+'</span>';
+  return inner;
+}
+
+/* ===================== RENDER: tarjetas resumen ===================== */
+(function(){
+  const host=document.getElementById('cardsHost');
+  ORDER.forEach(k=>{
+    const p=P[k];
+    const c=el('div','pcard');
+    setC(c,k);
+    c.innerHTML = '<h3><span class="dot"></span>'+p.name+'</h3>'+
+      '<div class="filo">'+p.filo+'</div>'+
+      '<ul>'+p.str.map(s=>'<li>'+s+'</li>').join('')+'</ul>'+
+      '<div class="ideal"><b>Ideal para:</b> '+p.ideal+'</div>';
+    host.appendChild(c);
+  });
+})();
+
+/* ===================== RENDER: tabla comparativa ===================== */
+let activeCat="Todas";
+let pfOn={openlms:true,brightspace:true,google:true,microsoft:true,cypher:true};
+
+function renderCatChips(){
+  const host=document.getElementById('catChips'); host.innerHTML="";
+  CATS.forEach(cat=>{
+    const ch=el('button','chip'+(cat===activeCat?' active':''),cat);
+    ch.onclick=()=>{activeCat=cat; renderCatChips(); renderTable();};
+    host.appendChild(ch);
+  });
+}
+function renderPfChips(){
+  const host=document.getElementById('pfChips'); host.innerHTML="";
+  ORDER.forEach(k=>{
+    const ch=el('button','chip pf',P[k].short);
+    ch.style.setProperty('--c',P[k].c);
+    ch.dataset.on = pfOn[k]?"1":"0";
+    ch.onclick=()=>{
+      const n=ORDER.filter(x=>pfOn[x]).length;
+      if(pfOn[k] && n<=2){ ch.animate([{transform:'translateX(0)'},{transform:'translateX(-4px)'},{transform:'translateX(4px)'},{transform:'translateX(0)'}],{duration:220}); return; }
+      pfOn[k]=!pfOn[k]; renderPfChips(); renderTable();
+    };
+    host.appendChild(ch);
+  });
+}
+function renderTable(){
+  const cols=ORDER.filter(k=>pfOn[k]);
+  const t=document.getElementById('cmpTable'); t.innerHTML="";
+  const thead=el('thead'); const hr=el('tr');
+  hr.appendChild(el('th','', 'Funcionalidad'));
+  cols.forEach(k=>{ const th=el('th'); th.innerHTML='<span class="pn">'+P[k].short+'</span>'; th.style.background=P[k].c; hr.appendChild(th); });
+  thead.appendChild(hr); t.appendChild(thead);
+  const tb=el('tbody');
+  let lastCat="";
+  FEATURES.filter(f=>activeCat==="Todas"||f.c===activeCat).forEach(f=>{
+    if(f.c!==lastCat){
+      const cr=el('tr','cat-head'); const cd=el('td'); cd.colSpan=cols.length+1; cd.textContent=f.c; cr.appendChild(cd); tb.appendChild(cr); lastCat=f.c;
+    }
+    const tr=el('tr');
+    tr.appendChild(el('th','',f.n));
+    const nums=cols.map(k=>numVal(f.v[k]));
+    const max=Math.max.apply(null,nums);
+    cols.forEach((k,i)=>{
+      const td=el('td'); const note=f.note&&f.note[k]?f.note[k]:null;
+      td.innerHTML=cellHTML(f.v[k],note);
+      if(nums[i]===max && max>0) td.className="best";
+      tr.appendChild(td);
+    });
+    tb.appendChild(tr);
+  });
+  t.appendChild(tb);
+}
+
+/* ===================== RENDER: costos ===================== */
+(function(){
+  const t=document.getElementById('costTable');
+  const thead=el('thead'); const hr=el('tr'); hr.appendChild(el('th','','Concepto'));
+  ORDER.forEach(k=>{ const th=el('th','', P[k].short); th.style.background=P[k].c; hr.appendChild(th); });
+  thead.appendChild(hr); t.appendChild(thead);
+  const tb=el('tbody');
+  COST_ROWS.forEach(r=>{
+    const tr=el('tr'); tr.appendChild(el('th','',r.label));
+    ORDER.forEach(k=>{ const td=el('td'); const v=r.vals[k]; td.innerHTML='<span class="lvl '+costLevel(v)+'">'+v+'</span>'; tr.appendChild(td); });
+    tb.appendChild(tr);
+  });
+  t.appendChild(tb);
+
+  const cv=document.getElementById('cvHost');
+  ORDER.forEach(k=>{
+    const d=COSTVALUE[k]; const row=el('div','cv-row'); setC(row,k);
+    row.innerHTML='<div class="pn"><span class="dot"></span>'+P[k].short+'</div>'+
+      '<div class="cv-line"><b>Costo</b><div class="meter cost"><i style="width:'+(d.costo*20)+'%"></i></div><span>'+d.costo+'/5</span></div>'+
+      '<div class="cv-line"><b>Valor</b><div class="meter val"><i style="width:'+(d.valor*20)+'%"></i></div><span>'+d.valor+'/5</span></div>';
+    cv.appendChild(row);
+  });
+
+  const of=document.getElementById('orderHost');
+  INVEST_ORDER.forEach((k,i)=>{
+    const o=el('span','o',P[k].short); o.style.background=P[k].c; of.appendChild(o);
+    if(i<INVEST_ORDER.length-1) of.appendChild(el('span','ar','→'));
+  });
+
+  const ph=document.getElementById('priceHost');
+  ORDER.forEach(k=>{
+    const d=el('details','price'); setC(d,k);
+    d.innerHTML='<summary><span class="dot"></span>'+P[k].name+'</summary><div class="body">'+PRICE[k]+'</div>';
+    ph.appendChild(d);
+  });
+})();
+
+/* ===================== RENDER: casos ===================== */
+(function(){
+  const host=document.getElementById('casesHost');
+  ORDER.forEach(k=>{
+    const cs=CASES[k]; const card=el('div','case'); setC(card,k);
+    let html='<h3><span class="dot"></span>'+P[k].name+'</h3>';
+    html+='<div class="grp"><div class="glabel">🇲🇽 México</div><div class="tags">'+cs.mx.map(x=>'<span class="tg mx">'+x+'</span>').join('')+'</div></div>';
+    html+='<div class="grp"><div class="glabel">🌎 Latinoamérica</div><div class="tags">'+cs.la.map(x=>'<span class="tg la">'+x+'</span>').join('')+'</div></div>';
+    html+='<div class="nota">'+cs.nota+'</div>';
+    card.innerHTML=html; host.appendChild(card);
+  });
+})();
+
+/* ===================== RENDER: rankings ===================== */
+(function(){
+  const host=document.getElementById('rankHost');
+  RANKINGS.forEach(r=>{
+    const [cat,k]=r; const row=el('div','rank'); row.style.setProperty('--c',P[k].c);
+    row.innerHTML='<span class="medal">🏆</span><span class="cat">'+cat+'</span><span class="win"><span class="dot"></span>'+P[k].short+'</span>';
+    host.appendChild(row);
+  });
+})();
+
+/* ===================== RENDER: escenarios ICEST ===================== */
+(function(){
+  const host=document.getElementById('scnHost');
+  SCENARIOS.forEach(s=>{
+    const c=el('div','scn'); setC(c,s.p);
+    c.innerHTML='<div class="badge">'+s.badge+'</div><h4>'+s.t+'</h4><p>'+s.d+'</p>'+
+      '<div class="rec"><span class="dot"></span>🥇 '+P[s.p].name+'</div>';
+    host.appendChild(c);
+  });
+})();
+
+/* ===================== RECOMENDADOR ===================== */
+let qi=0; const answers=[];
+const qtext=document.getElementById('qtext'), qopts=document.getElementById('qopts'),
+      qbar=document.getElementById('qbar'), qcount=document.getElementById('qcount'),
+      qback=document.getElementById('qback'), results=document.getElementById('results'),
+      stage=document.getElementById('quizStage'), podium=document.getElementById('podium');
+const KEYS=["A","B","C","D"];
+
+function renderQuestion(){
+  const Q=QUESTIONS[qi];
+  qbar.style.width=((qi)/QUESTIONS.length*100)+"%";
+  qcount.textContent="Pregunta "+(qi+1)+" de "+QUESTIONS.length;
+  qtext.textContent=Q.q;
+  qback.disabled = qi===0;
+  qopts.innerHTML="";
+  Q.opts.forEach((o,i)=>{
+    const b=el('button','qopt');
+    b.innerHTML='<span class="k">'+KEYS[i]+'</span><span>'+o.t+'</span>';
+    if(answers[qi]===i){ b.style.borderColor='var(--navy-l)'; b.style.background='#Eaf1fb'; }
+    b.onclick=()=>{ answers[qi]=i; setTimeout(next,140); };
+    qopts.appendChild(b);
+  });
+}
+function next(){ if(qi<QUESTIONS.length-1){ qi++; renderQuestion(); } else { showResults(); } }
+qback.onclick=()=>{ if(qi>0){ qi--; renderQuestion(); } };
+
+function computeResults(){
+  const w={}; answers.forEach((idx,q)=>{ const ww=QUESTIONS[q].opts[idx].w; for(const k in ww) w[k]=(w[k]||0)+ww[k]; });
+  let sumW=0; for(const k in w) sumW+=w[k];
+  const res=ORDER.map(p=>{
+    let s=0, best={k:null,val:-1};
+    for(const k in w){ const contrib=w[k]*(DIM[p][k]||0); s+=contrib; if(contrib>best.val){best={k:k,val:contrib};} }
+    return {p, score:s, match: sumW? Math.round(s/(sumW*5)*100):0, reason:best.k};
+  });
+  res.sort((a,b)=> b.score-a.score);
+  return res;
+}
+function showResults(){
+  qbar.style.width="100%";
+  const res=computeResults();
+  const medals=["🥇","🥈","🥉"];
+  podium.innerHTML="";
+  res.slice(0,3).forEach((r,i)=>{
+    const p=P[r.p]; const card=el('div','res'+(i===0?' top1':'')); setC(card,r.p);
+    const reasonTxt = r.reason? ('Destaca por <b>'+DIM_LABEL[r.reason]+'</b>. ') : '';
+    card.innerHTML='<div class="rk">'+medals[i]+'</div>'+
+      '<div class="info"><h4><span class="dot"></span>'+p.name+'</h4>'+
+      '<div class="why">'+reasonTxt+p.exec+'. Ideal para: '+p.ideal.toLowerCase()+'.</div>'+
+      '<div class="bar"><i style="width:0%" data-w="'+r.match+'"></i></div>'+
+      '<div class="pct">'+r.match+'% de compatibilidad</div></div>';
+    podium.appendChild(card);
+  });
+  stage.style.display="none"; results.classList.add('show');
+  results.scrollIntoView({behavior:'smooth',block:'start'});
+  setTimeout(()=>{ podium.querySelectorAll('.bar i').forEach(b=> b.style.width=b.dataset.w+'%'); },120);
+}
+document.getElementById('restart').onclick=()=>{
+  qi=0; answers.length=0; results.classList.remove('show'); stage.style.display="block"; renderQuestion();
+  document.getElementById('recomendador').scrollIntoView({behavior:'smooth'});
+};
+
+/* ===================== NAV móvil ===================== */
+const drawer=document.getElementById('drawer');
+document.getElementById('menuBtn').onclick=()=> drawer.classList.toggle('open');
+drawer.querySelectorAll('a').forEach(a=> a.onclick=()=> drawer.classList.remove('open'));
+
+/* ===================== INIT ===================== */
+renderCatChips(); renderPfChips(); renderTable(); renderQuestion();
+</script>
+</body>
+</html>
